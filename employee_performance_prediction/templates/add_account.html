@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .password-validation {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #bf0a30;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Sign Up</h2>
+    <form method="post" action="{% url 'add_account' %}" id="add_account">
+        {% csrf_token %}
+
+        <label for="{{ form.username.id_for_label }}">Username:</label>
+        {{ form.username }}
+
+        <label for="{{ form.password1.id_for_label }}">Password:</label>
+        {{ form.password1 }}
+        <div class="password-validation" id="password-validation"></div>
+
+        <button type="submit" id="submitBtn" disabled>Sign Up</button>
+    </form>
+</div>
+
+<script>
+    // Password validation
+    const passwordInput = document.querySelector('input[name="password1"]');
+    const passwordValidationMessage = document.getElementById('password-validation');
+    const submitButton = document.getElementById('submitBtn');
+
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+
+        if (!isPasswordValid(password)) {
+            passwordValidationMessage.innerText = "Password must contain only lowercase letters.";
+            submitButton.disabled = true;
+        } else {
+            passwordValidationMessage.innerText = "";
+            submitButton.disabled = false;
+        }
+    });
+
+    function isPasswordValid(password) {
+        // Password must contain only lowercase letters
+        const regex = /^[a-z]+$/;
+        return regex.test(password);
+    }
+
+    // Alert if the user tries to submit with invalid password
+    document.getElementById('add_account').addEventListener('submit', function (event) {
+        const password = passwordInput.value;
+        if (!isPasswordValid(password)) {
+            
+            event.preventDefault();
+            alert("Password must contain only lowercase letters.");
+        }
+    });
+</script>
+</body>
+</html>

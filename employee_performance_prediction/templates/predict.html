@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120vh;
+        }
+
+        .main {
+            margin-left: 7%;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 550px;
+            height: 110vh;
+        }
+
+        h1 {
+            font-family: 'Times New Roman', serif;
+            margin: 20px 0;
+            color: #F6465B;
+            font-size: 30px;
+            font-weight: bold;
+            animation-delay: 3.5s;
+        }
+
+        input[type=submit] {
+            background-color: #ffa500;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+        }
+
+        input[type=submit]:hover {
+            background-color: #fff;
+            color: #ffa500;
+            border: 2px solid #ffa500;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        p {
+            color: #ffffff;
+            margin: 0;
+        }
+
+        em {
+            color: #bf0a30;
+        }
+
+        .gfg {
+            color: #4caf50;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .row h2 em {
+            color: #bf0a30;
+        }
+    </style>
+</head>
+
+<body>
+    <p><em>WELCOME TO THE PREDICTION PAGE</em></p>
+    <div class="main">
+        <h1 >Employee Performance Prediction</h1>
+        <h1>Know your employees more ! </h1> <br />
+		<h1>Enter the needed values</h1>
+        <form action="result">
+            <table>
+                <tr>
+                    <td align="right"> <strong>Targeted_productivity:</strong> </td>
+                    <td align="left"><input type="text" name="n1"></td>
+                </tr>
+                <tr>
+                    <td align="right"> <strong>smv:</strong> </td>
+                    <td align="left"><input type="text" name="n2"></td>
+                </tr>
+                <tr>
+                    <td align="right"> <strong>wip:</strong> </td>
+                    <td align="left"><input type="text" name="n3"></td>
+                </tr>
+                <tr>
+                    <td align="right"> <strong>over_time:</strong> </td>
+                    <td align="left"><input type="text" name="n4"></td>
+                </tr>
+                <tr>
+                    <td align="right"> <strong>incentive:</strong> </td>
+                    <td align="left"><input type="text" name="n5"></td>
+                </tr>
+            </table>
+            <input type="submit" value="PREDICT">
+        </form>
+        <div class="row">
+            <h2><em>{{result2}}</em></h2>
+        </div>
+    </div>
+</body>
+
+</html>
